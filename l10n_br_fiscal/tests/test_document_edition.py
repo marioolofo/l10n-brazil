@@ -4,9 +4,10 @@
 from unittest import mock
 
 from odoo.tests import TransactionCase
-from odoo.tests.common import Form
+from odoo.tests.common import Form, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestDocumentEdition(TransactionCase):
     @classmethod
     def setUpClass(cls):
@@ -96,6 +97,8 @@ class TestDocumentEdition(TransactionCase):
             self.assertEqual(
                 line_form.ipi_tax_id, self.env.ref("l10n_br_fiscal.tax_ipi_3_25")
             )
+            line_form.icmsfcp_base = line_form.price_unit
+            line_form.icmsfcp_value = 3  # ensure manually setting FCP value works
 
         doc = doc_form.save()
         line = doc.fiscal_line_ids[0]
@@ -115,6 +118,8 @@ class TestDocumentEdition(TransactionCase):
         )
         self.assertEqual(line.ipi_tax_id, self.env.ref("l10n_br_fiscal.tax_ipi_3_25"))
         self.assertEqual(line.icms_value, 37.17)
+        self.assertEqual(line.icmsfcp_base, line.price_unit)
+        self.assertEqual(line.icmsfcp_value, 3)
 
     def test_product_fiscal_factor(self):
         doc_form = Form(
@@ -276,3 +281,28 @@ class TestDocumentEdition(TransactionCase):
         self.assertAlmostEqual(
             doc_after_total_update.fiscal_amount_total, 2776.48, places=2
         )
+
+    def test_difal_calculation(self):
+        partner = self.env.ref("l10n_br_base.res_partner_cliente5_pe")
+        partner.ind_ie_dest = "9"
+        doc_form = Form(
+            self.env["l10n_br_fiscal.document"].with_context(
+                default_fiscal_operation_type="out",
+            )
+        )
+        doc_form.company_id = self.company
+        doc_form.partner_id = partner
+        doc_form.fiscal_operation_id = self.env.ref("l10n_br_fiscal.fo_venda")
+
+        product = self.env.ref("product.product_product_6")
+        with doc_form.fiscal_line_ids.new() as line_form:
+            line_form.product_id = product
+            line_form.price_unit = 100.0
+            line_form.quantity = 1.0
+
+        doc = doc_form.save()
+        line = doc.fiscal_line_ids[0]
+        self.assertEqual(line.icms_destination_base, 100.0)
+        self.assertEqual(line.icms_origin_percent, 7.0)
+        self.assertEqual(line.icms_destination_percent, 20.5)
+        self.assertEqual(line.icms_destination_value, 13.5)
