@@ -9,18 +9,12 @@ class SaleOrder(models.Model):
         result = super()._cart_update(product_id, line_id, add_qty, set_qty, **kwargs)
 
         order = request.website.sale_get_order()
-        if order.id and hasattr(order, '_onchange_partner_id_fiscal'):
-            order._onchange_partner_id_fiscal()
-
+        if order.id:
+            order._onchange_fiscal_operation_id()
 
         update_line_id = result.get("line_id")
         if update_line_id:
             line = order.order_line.browse(update_line_id)
-            line._onchange_quantity_fiscal()
-            line._onchange_fiscal_operation_id()
-            line._onchange_fiscal_taxes()
-            line._onchange_fiscal_tax_ids()
-            line._compute_product_fiscal_fields()
-            line._compute_fiscal_amounts()
+            line.fiscal_operation_id = order.fiscal_operation_id
 
         return result

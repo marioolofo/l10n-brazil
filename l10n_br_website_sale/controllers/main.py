@@ -14,21 +14,6 @@ class L10nBrWebsiteSale(WebsiteSale):
     def _get_country_code(self, country_id):
         return request.env["res.country"].browse(country_id).code
 
-    # overwrite confirm_order
-    @http.route(
-        ["/shop/confirm_order"], type="http", auth="public", website=True, sitemap=False
-    )
-    def confirm_order(self, **post):
-        order = request.website.sale_get_order()
-
-        for line in order.order_line:
-            line._compute_product_fiscal_fields()
-            line._onchange_fiscal_operation_id()
-            line._onchange_fiscal_taxes()
-            line._onchange_fiscal_tax_ids()
-
-        return super().confirm_order(**post)
-
     def _get_mandatory_fields_billing(self, country_id=False):
         req = super()._get_mandatory_fields_billing(country_id)
         company_country_code = request.website.company_id.country_id.code
