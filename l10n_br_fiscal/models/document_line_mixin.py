@@ -555,6 +555,7 @@ class FiscalDocumentLineMixin(models.AbstractModel):
                 line.nbs_id = False
                 line.fiscal_genre_id = False
                 line.service_type_id = False
+                line.operation_indicator_id = False
                 continue
             p = line.product_id
             line.fiscal_type = p.fiscal_type
@@ -566,6 +567,7 @@ class FiscalDocumentLineMixin(models.AbstractModel):
             line.nbs_id = p.nbs_id
             line.fiscal_genre_id = p.fiscal_genre_id
             line.service_type_id = p.service_type_id
+            line.operation_indicator_id = p.operation_indicator_id
 
     @api.depends("product_id")
     def _compute_city_taxation_code_id(self):
@@ -1201,6 +1203,15 @@ class FiscalDocumentLineMixin(models.AbstractModel):
         precompute=True,
     )
 
+    operation_indicator_id = fields.Many2one(
+        comodel_name="l10n_br_fiscal.operation.indicator",
+        string="Operation Indicator",
+        compute="_compute_product_fiscal_fields",
+        store=True,
+        readonly=False,
+        precompute=True,
+    )
+
     partner_order = fields.Char(string="Partner Order (xPed)", size=15)
 
     partner_order_line = fields.Char(string="Partner Order Line (nItemPed)", size=6)
@@ -1808,7 +1819,11 @@ class FiscalDocumentLineMixin(models.AbstractModel):
     cbs_tax_id = fields.Many2one(
         comodel_name="l10n_br_fiscal.tax",
         string="Tax CBS",
-        domain=[("tax_domain", "=", TAX_DOMAIN_CBS)],
+        domain=(
+            f"[('tax_domain', '=', '{TAX_DOMAIN_CBS}'), '|', "
+            "('cst_in_id.code', 'like', cst_code_prefix_like), "
+            "('cst_out_id.code', 'like', cst_code_prefix_like)]"
+        ),
         compute="_compute_tax_fields",
         store=True,
         precompute=True,
@@ -1874,7 +1889,11 @@ class FiscalDocumentLineMixin(models.AbstractModel):
     ibs_tax_id = fields.Many2one(
         comodel_name="l10n_br_fiscal.tax",
         string="Tax IBS",
-        domain=[("tax_domain", "=", TAX_DOMAIN_IBS)],
+        domain=(
+            f"[('tax_domain', '=', '{TAX_DOMAIN_IBS}'), '|', "
+            "('cst_in_id.code', 'like', cst_code_prefix_like), "
+            "('cst_out_id.code', 'like', cst_code_prefix_like)]"
+        ),
         compute="_compute_tax_fields",
         store=True,
         precompute=True,
@@ -1945,6 +1964,21 @@ class FiscalDocumentLineMixin(models.AbstractModel):
         precompute=True,
         readonly=False,
     )
+
+    cst_code_prefix_like = fields.Char(
+        compute="_compute_cst_code_prefix_like",
+        help="Helper field to filter taxes by CST code prefix (3 chars) using LIKE.",
+    )
+
+    @api.depends("tax_classification_id")
+    def _compute_cst_code_prefix_like(self):
+        for rec in self:
+            code = rec.tax_classification_id.code if rec.tax_classification_id else ""
+            prefix = (code or "")[:3]
+            # Avoid matching all records when the prefix is not available yet.
+            rec.cst_code_prefix_like = (
+                f"{prefix}%" if len(prefix) == 3 else "__no_match__%"
+            )
 
     # II Fields
     ii_tax_id = fields.Many2one(

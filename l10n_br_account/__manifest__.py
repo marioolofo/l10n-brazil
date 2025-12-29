@@ -8,7 +8,7 @@
     "license": "AGPL-3",
     "author": "Akretion, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-brazil",
-    "version": "16.0.11.0.0",
+    "version": "16.0.13.0.0",
     "development_status": "Beta",
     "maintainers": ["renatonlima", "rvalyi"],
     "depends": [
@@ -33,7 +33,7 @@
         # Wizards
         "wizards/account_move_reversal_view.xml",
         "wizards/wizard_document_status.xml",
-        "wizards/document_import_wizard_mixin.xml",
+        "wizards/document_import_wizard.xml",
         # Report
         "report/account_invoice_report_view.xml",
         "views/res_partner_view.xml",

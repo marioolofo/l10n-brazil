@@ -11,7 +11,7 @@
     "maintainers": ["rvalyi", "renatonlima"],
     "website": "https://github.com/OCA/l10n-brazil",
     "development_status": "Beta",
-    "version": "16.0.10.2.0",
+    "version": "16.0.12.0.0",
     "depends": [
         "l10n_br_fiscal_edi",
         "l10n_br_fiscal_certificate",
@@ -37,7 +37,7 @@
         "report/danfe_nfce.xml",
         "report/danfe_report.xml",
         # Wizards
-        "wizards/import_document.xml",
+        "wizards/document_import_wizard.xml",
         # Actions,
         "views/nfe_action.xml",
         # Menus

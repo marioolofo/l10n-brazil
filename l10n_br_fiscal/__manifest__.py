@@ -10,7 +10,7 @@
     "maintainers": ["renatonlima", "rvalyi"],
     "website": "https://github.com/OCA/l10n-brazil",
     "development_status": "Production/Stable",
-    "version": "16.0.18.0.1",
+    "version": "16.0.20.0.0",
     "depends": [
         "product",
         "uom_alias",
@@ -48,6 +48,7 @@
         "data/l10n_br_fiscal.tax.pis.cofins.credit.csv",
         "data/l10n_br_fiscal.tax.classification.csv",
         "data/l10n_br_fiscal.service.type.csv",
+        "data/l10n_br_fiscal.operation.indicator.csv",
         "data/simplified_tax_data.xml",
         "data/operation_data.xml",
         "data/l10n_br_fiscal_tax_icms_data.xml",
@@ -88,6 +89,7 @@
         "views/simplified_tax_range_view.xml",
         "views/operation_view.xml",
         "views/operation_line_view.xml",
+        "views/operation_indicator_view.xml",
         "views/product_template_view.xml",
         "views/product_product_view.xml",
         "views/tax_estimate_view.xml",
@@ -104,7 +106,7 @@
         "views/city_taxation_code.xml",
         "views/operation_dashboard_view.xml",
         # Wizards
-        "wizards/document_import_wizard_mixin.xml",
+        "wizards/document_import_wizard.xml",
         # Actions
         "views/l10n_br_fiscal_action.xml",
         # Menus

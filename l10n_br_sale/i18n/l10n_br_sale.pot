@@ -131,6 +131,7 @@ msgid "CBS % Reduction"
 msgstr ""
 
 #. module: l10n_br_sale
+#: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order__amount_cbs_base
 #: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order_line__cbs_base
 msgid "CBS Base"
 msgstr ""
@@ -146,6 +147,7 @@ msgid "CBS CST Code"
 msgstr ""
 
 #. module: l10n_br_sale
+#: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order__amount_cbs_value
 #: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order_line__cbs_value
 msgid "CBS Value"
 msgstr ""
@@ -435,6 +437,11 @@ msgid "Country"
 msgstr ""
 
 #. module: l10n_br_sale
+#: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order_line__cst_code_prefix_like
+msgid "Cst Code Prefix Like"
+msgstr ""
+
+#. module: l10n_br_sale
 #: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order__currency_id
 #: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order_line__currency_id
 msgid "Currency"
@@ -665,6 +672,11 @@ msgid "Gross Amount"
 msgstr ""
 
 #. module: l10n_br_sale
+#: model:ir.model.fields,help:l10n_br_sale.field_sale_order_line__cst_code_prefix_like
+msgid "Helper field to filter taxes by CST code prefix (3 chars) using LIKE."
+msgstr ""
+
+#. module: l10n_br_sale
 #: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order_line__ibs_percent
 msgid "IBS %"
 msgstr ""
@@ -675,6 +687,7 @@ msgid "IBS % Reduction"
 msgstr ""
 
 #. module: l10n_br_sale
+#: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order__amount_ibs_base
 #: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order_line__ibs_base
 msgid "IBS Base"
 msgstr ""
@@ -690,6 +703,7 @@ msgid "IBS CST Code"
 msgstr ""
 
 #. module: l10n_br_sale
+#: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order__amount_ibs_value
 #: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order_line__ibs_value
 msgid "IBS Value"
 msgstr ""
@@ -1315,6 +1329,11 @@ msgstr ""
 #. module: l10n_br_sale
 #: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order_line__operation_fiscal_type
 msgid "Operation Fiscal Type"
+msgstr ""
+
+#. module: l10n_br_sale
+#: model:ir.model.fields,field_description:l10n_br_sale.field_sale_order_line__operation_indicator_id
+msgid "Operation Indicator"
 msgstr ""
 
 #. module: l10n_br_sale

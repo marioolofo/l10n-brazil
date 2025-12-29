@@ -110,9 +110,9 @@ msgstr ""
 
 #. module: l10n_br_account
 #. odoo-python
-#: code:addons/l10n_br_account/wizards/document_import_wizard_mixin.py:0
+#: code:addons/l10n_br_account/wizards/document_import_wizard.py:0
 #, python-format
-msgid "Adjust Importation for document type %s"
+msgid "Adjust Importation"
 msgstr ""
 
 #. module: l10n_br_account
@@ -386,7 +386,10 @@ msgid "CBS % Reduction"
 msgstr ""
 
 #. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__amount_cbs_base
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__amount_cbs_base
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_move_line__cbs_base
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__amount_cbs_base
 msgid "CBS Base"
 msgstr ""
 
@@ -401,7 +404,10 @@ msgid "CBS CST Code"
 msgstr ""
 
 #. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__amount_cbs_value
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__amount_cbs_value
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_move_line__cbs_value
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__amount_cbs_value
 msgid "CBS Value"
 msgstr ""
 
@@ -1048,6 +1054,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_move__correction_reason
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__correction_reason
 msgid "Correction Reason"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move_line__cst_code_prefix_like
+msgid "Cst Code Prefix Like"
 msgstr ""
 
 #. module: l10n_br_account
@@ -2325,8 +2336,7 @@ msgid "Financial Gross Amount"
 msgstr ""
 
 #. module: l10n_br_account
-#: model:ir.model.fields,field_description:l10n_br_account.field_l10n_br_fiscal_document_import_wizard_mixin__first_imported_move_id
-#: model:ir.model.fields,field_description:l10n_br_account.field_l10n_br_nfe_import_xml__first_imported_move_id
+#: model:ir.model.fields,field_description:l10n_br_account.field_l10n_br_fiscal_document_import_wizard__first_imported_move_id
 msgid "First Imported Move"
 msgstr ""
 
@@ -2792,7 +2802,7 @@ msgstr ""
 
 #. module: l10n_br_account
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_move_line__nfe40_IBSCBS
-msgid "Grupo de informações dos tributos IBS"
+msgid "Grupo de informações dos tributos IBS, CBS"
 msgstr ""
 
 #. module: l10n_br_account
@@ -2842,6 +2852,11 @@ msgid "Grupo para informações da solicitação da NFF"
 msgstr ""
 
 #. module: l10n_br_account
+#: model:ir.model.fields,help:l10n_br_account.field_account_move_line__cst_code_prefix_like
+msgid "Helper field to filter taxes by CST code prefix (3 chars) using LIKE."
+msgstr ""
+
+#. module: l10n_br_account
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_move_line__ibs_percent
 msgid "IBS %"
 msgstr ""
@@ -2852,7 +2867,10 @@ msgid "IBS % Reduction"
 msgstr ""
 
 #. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__amount_ibs_base
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__amount_ibs_base
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_move_line__ibs_base
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__amount_ibs_base
 msgid "IBS Base"
 msgstr ""
 
@@ -2867,7 +2885,10 @@ msgid "IBS CST Code"
 msgstr ""
 
 #. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__amount_ibs_value
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__amount_ibs_value
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_move_line__ibs_value
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__amount_ibs_value
 msgid "IBS Value"
 msgstr ""
 
@@ -3567,8 +3588,13 @@ msgid "If empty, uses the journal of the journal entry to be reversed."
 msgstr ""
 
 #. module: l10n_br_account
-#: model_terms:ir.ui.view,arch_db:l10n_br_account.document_import_wizard_mixin_form
+#: model_terms:ir.ui.view,arch_db:l10n_br_account.document_import_wizard_form
 msgid "Import Account Move"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model,name:l10n_br_account.model_l10n_br_fiscal_document_import_wizard
+msgid "Import Document Wizard"
 msgstr ""
 
 #. module: l10n_br_account
@@ -3585,14 +3611,14 @@ msgstr ""
 
 #. module: l10n_br_account
 #. odoo-python
-#: code:addons/l10n_br_account/wizards/document_import_wizard_mixin.py:0
+#: code:addons/l10n_br_account/wizards/document_import_wizard.py:0
 #, python-format
 msgid "Imported Invoice"
 msgstr ""
 
 #. module: l10n_br_account
 #. odoo-python
-#: code:addons/l10n_br_account/wizards/document_import_wizard_mixin.py:0
+#: code:addons/l10n_br_account/wizards/document_import_wizard.py:0
 #, python-format
 msgid "Imported Invoices"
 msgstr ""
@@ -5112,6 +5138,11 @@ msgstr ""
 #. module: l10n_br_account
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_move_line__operation_fiscal_type
 msgid "Operation Fiscal Type"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move_line__operation_indicator_id
+msgid "Operation Indicator"
 msgstr ""
 
 #. module: l10n_br_account
@@ -6635,6 +6666,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vBCIBSCBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vBCIBSCBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vBCIBSCBS
+msgid "Total Base de Calculo IBS/CBS"
+msgstr ""
+
+#. module: l10n_br_account
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__total_weight
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_move__total_weight
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__total_weight
@@ -6644,6 +6682,76 @@ msgstr ""
 #. module: l10n_br_account
 #: model:ir.model.fields,help:l10n_br_account.field_account_move_line__financial_total_gross
 msgid "Total amount before any discounts are applied."
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vDevTribCBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vDevTribCBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vDevTribCBS
+msgid "Total de devoluções de tributos CBS"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vDevTribIBSMun
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vDevTribIBSMun
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vDevTribIBSMun
+msgid "Total de devoluções de tributos IBS Municipal"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vDevTribIBSUF
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vDevTribIBSUF
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vDevTribIBSUF
+msgid "Total de devoluções de tributos IBS UF"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vCredPres
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vCredPres
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vCredPres
+msgid "Total do Crédito Presumido"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vCredPresCBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vCredPresCBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vCredPresCBS
+msgid "Total do Crédito Presumido CBS"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vCredPresCondSus
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vCredPresCondSus
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vCredPresCondSus
+msgid "Total do Crédito Presumido Condição Suspensiva"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vCredPresCondSusCBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vCredPresCondSusCBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vCredPresCondSusCBS
+msgid "Total do Crédito Presumido Condição Suspensiva CBS"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vDifCBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vDifCBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vDifCBS
+msgid "Total do Diferimento CBS"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vDifIBSMun
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vDifIBSMun
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vDifIBSMun
+msgid "Total do Diferimento IBS Municipal"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vDifIBSUF
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vDifIBSUF
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vDifIBSUF
+msgid "Total do Diferimento IBS UF"
 msgstr ""
 
 #. module: l10n_br_account
@@ -7327,6 +7435,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vCBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vCBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vCBS
+msgid "Valor total da CBS"
+msgstr ""
+
+#. module: l10n_br_account
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__cte40_vCarga
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_move__cte40_vCarga
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__cte40_vCarga
@@ -7370,6 +7485,27 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_br_account.field_account_payment__nfe40_qBCMonoReten
 msgid ""
 "Valor total da quantidade tributada do ICMS monofásico sujeito a retenção"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vIBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vIBS
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vIBS
+msgid "Valor total do IBS"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vIBSUF
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vIBSUF
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vIBSUF
+msgid "Valor total do IBS Estadual"
+msgstr ""
+
+#. module: l10n_br_account
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_bank_statement_line__nfe40_vIBSMun
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_move__nfe40_vIBSMun
+#: model:ir.model.fields,field_description:l10n_br_account.field_account_payment__nfe40_vIBSMun
+msgid "Valor total do IBS Municipal"
 msgstr ""
 
 #. module: l10n_br_account
@@ -7603,11 +7739,6 @@ msgstr ""
 #. module: l10n_br_account
 #: model:ir.model.fields,field_description:l10n_br_account.field_account_move_line__nfe40_veicProd
 msgid "Veículos novos"
-msgstr ""
-
-#. module: l10n_br_account
-#: model:ir.model,name:l10n_br_account.model_l10n_br_fiscal_document_import_wizard_mixin
-msgid "Wizard Import Document Mixin"
 msgstr ""
 
 #. module: l10n_br_account
